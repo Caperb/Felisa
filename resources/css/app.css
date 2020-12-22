@@ -1,0 +1,27 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html {
+  scroll-behavior: smooth;
+}
+
+#hero img {
+  width: 100vw;
+  height: 90vh!important;
+}
+
+#contact{
+  height: 40vh;
+  width: 100vw;
+  padding: 1vh;
+  background-color: grey;
+}
+
+#voordelen{
+  text-align: center;
+}
+
+footer{
+  text-align: center;
+}

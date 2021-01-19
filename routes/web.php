@@ -24,9 +24,13 @@ use App\Http\Controllers\HandtekeningController;
 |
 */
 
-Route::get('/', function () {
-    return view('/auth/login');
-});
+Route::get('', function () {
+  return Inertia\Inertia::render('Homepage');
+})->name('homepage');
+
+// Route::get('/adminlogin', function () {
+//     return view('/auth/login');
+// });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');

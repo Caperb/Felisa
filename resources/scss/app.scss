@@ -8,6 +8,21 @@ body {
   z-index: -2;
  }
 
+ .home-menu{
+   position: absolute!important;
+ }
+
+ .logo-top{
+   width: 18vw;
+   box-shadow: 0px 0px 20px 16px rgba(0, 0, 0, 0.2);
+ }
+
+ .logo-container{
+   text-align: center;
+    width: -webkit-fill-available;
+    position: absolute;
+ }
+
  .float-left{
    float: left;
  }

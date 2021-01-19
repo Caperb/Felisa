@@ -1,27 +1,1062 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@use "@material/button";
+@include button.core-styles;
 
-html {
-  scroll-behavior: smooth;
+body {
+  color: #292929;
+  font-family: 'Montserrat', sans-serif !important;
+  background-image: url("/images/db_bg.jpg");
+
 }
 
-#hero img {
-  width: 100vw;
-  height: 90vh!important;
+.titel-icon {
+  font-size: 3vh!important;
 }
 
-#contact{
-  height: 40vh;
+.display-flex{
+  display: flex;
+}
+
+.margin-left-1-5vw{
+  margin-left: 1.5vw;
+}
+
+.grey{
+  color: grey;
+}
+
+.margin-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-right-1vw{
+  margin-right: 1vw;
+}
+
+.margin-left-2vw{
+  margin-left: 2vw;
+}
+
+.text-align-left{
+  text-align: left;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.text-align-right{
+  text-align: right;
+}
+
+.margin-left-5{
+  margin-left: 5%;
+}
+
+.margin-top-10{
+  margin-top:10%!important;
+}
+
+.margin-top-5{
+  margin-top:5%;
+}
+
+.margin-bottom-10{
+  margin-bottom: 10%!important;
+}
+
+.margin-bottom-5{
+  margin-bottom: 5%;
+}
+
+.margin-bottom-15px{
+  margin-bottom: 1vh;
+}
+
+.wrapper{
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  align-content: center;
+  text-align: center;
+}
+
+.home-logo{
+  margin-left: auto;
+  margin-right: auto;
+  height: 10vh;
+}
+
+.home-logo-kleiner{
+  margin-left: auto;
+  margin-right: auto;
+  height: 10vh;
+}
+
+.home-dashboard-button{
+position: fixed;
+top: 0;
+left: 0;
+width: 3%;
+height: 6%;
+color: white;
+font-weight: 900;
+font-size: 4vh;
+}
+
+.home-text-box{
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.home-button-row{
+  width: 100%;
+  display: flex;
+  margin-top: 25vh;
+}
+
+.home-button{
+  height: 10%;
+  width: 25%;
+  text-align: center;
+  font-size: 3vh;
+  font-weight: 900;
+}
+
+.home-button-right{
+  margin-left: 50%;
+}
+
+.input-titel{
+  margin-top: 3%;
+margin-bottom: 3%;
+font-weight: 900;
+font-size: 3vh;
+}
+
+.input-wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.input-row-content{
+  width: fit-content;
+  float: right;
+  display: flex;
+  margin-bottom: 1vh;
+}
+
+.input-row{
+  width: 100%;
+}
+
+.input-name{
+  font-size: 2vh;
+  margin-top: 0.5vh;
+}
+
+.input-field{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 15vw;
+  height: 5vh;
+  padding-left: 1vw;
+  font-size: 2vh;
+}
+
+.input-field-postcode{
+  width: 9vw!important;
+  margin-right: 1vw;
+}
+
+.input-field-huisnummer{
+  width: 5vw!important;
+}
+
+.back-button-bottom{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font-size: 3vh;
+  font-weight: 900;
+  padding: 1%;
+  padding-left: 2vw;
+}
+
+.continue-button-bottom{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  font-size: 3vh;
+  font-weight: 900;
+  padding: 1%;
+  padding-right: 2vw;
+}
+
+.reparatie-input-left{
+  width: 30%;
+  margin-right: 10%;
+  text-align: left;
+}
+
+.reparatie-input-right{
+  width: 50%;
+  margin-left: 10%;
+  margin-top: 2vh;
+}
+
+.reparatie-text-area{
+  width: 100%;
+  margin-bottom: 5%;
+  height: 30%;
+  max-height: 20vh;
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  padding-left: 1%;
+  font-size: 2vh;
+}
+
+.select-klant-button{
+  margin-top: 5%;
+margin-bottom: 5%;
+width: fit-content;
+margin-left: 10%;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3vw;
+  height: 3vh;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 2.5vh;
+  width: 1.3vw;
+  left: 5%;
+  bottom: 10%;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(1.4vw);
+  -ms-transform: translateX(1.4vw);
+  transform: translateX(1.4vw);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 3vh;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider-value{
+  margin-top: 0;
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+.modal-background{
+  background-color: lightgray;
+  opacity: 50%;
+  top: 0;
+  left: 0;
   width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+}
+
+.modal{
+  position: fixed;
+  width: 70%;
+  height: 80%;
+  top: 10%;
+  left: 15%;
+  z-index: 2;
+  background-color: white;
+  border-radius: 5px;
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+}
+
+.modal-content{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  width: fit-content;
+  height: fit-content;
+}
+
+.close-modal-button{
+  font-size: 2vh;
+  float: right;
+  margin-right: 1.5vw;
+  margin-top: 2vh;
+}
+
+.scrollable {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+.table-wrapper{
+  overflow:hidden;
+  overflow-y: scroll;
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+}
+
+.modal-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.modal-table td, .modal-table th {
+  border: 1px solid lightgray;
+  padding: 2%;
+}
+
+.modal-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.modal-table tr:hover {background-color: #ddd;}
+
+.modal-table th {
+  background-color: white;
+  color: #292929;
+}
+
+.row{
+  width: 100%;
+  display: flex;
+}
+
+.half-row{
+  width: 50%;
+}
+
+.block{
+  width: 100%;
+  display: flex;
+}
+
+.half-block{
+  width: 50%;
+}
+
+.modal-content-box{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+  font-size: 2vh;
+}
+
+.overzicht-text-box{
+  background-color: lightgray;
+  border-radius: 10px;
+  padding: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+  width: 90%;
+}
+
+.Aanvraag-input-box{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.aanvraag-modal{
+  position: fixed;
+  width: 70%;
+  height: fit-content;
+  top: 15%;
+  left: 15%;
+z-index: 2;
+background-color: white;
+border-radius: 5px;
+border: solid;
+border-width: 0.1px;
+border-color: lightgray;
+}
+
+.dashboard-menu-wrapper{
+  display: flex;
+}
+
+.dashboard-side-menu{
+  width: 10vw;
+  height: 100%;
+  border-width: 0.1px;
+  border-right-style: solid;
+  border-right-color: #292929;
+}
+
+.dashboard-content{
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-logo{
+  width: 100%;
+  border-width: 0.1px;
+  border-bottom-style: solid;
+  border-bottom-color: #292929;
+}
+
+.sidebar-item{
+  padding: 1vh 0;
+  width: 100%;
+  border-width: 0.1px;
+  border-bottom-style: solid;
+  border-bottom-color: #292929;
+  text-align: center;
+  font-size: 1.8vh;
+}
+
+.sidebar-back-button{
+height: 5vh;
+width: 9%;
+padding-top: 1vh;
+border-width: 0.1px;
+border-top-style: solid;
+border-top-color: #292929;
+border-right-style: solid;
+border-right-color: #292929;
+text-align: center;
+position: fixed;
+bottom: 0;
+left: 0;
+font-size: 2vh;
+}
+
+.dashboard-content-header{
+  width: 90vw;
+  height: 22vh;
+  border-bottom-color: lightgray;
+  border-bottom-style: solid;
+  border-bottom-width: 0.1px;
+  display: flex;
+}
+
+.dashboard-content-titel{
+  font-weight: 900;
+  font-size: 4vh;
+  padding-top: 13vh;
+  padding-left: 5vw;
+}
+
+.search-bar-container{
+ width: fit-content;
+ height: fit-content;
+ margin-left: auto;
+ margin-right: 2vw;
+ margin-top: 12vh;
+}
+
+.dashboard-search-bar-titel{
+    font-size: 2vh;
+}
+
+.dashboard-search-bar{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 15vw;
+  height: 5vh;
+  padding-left: 1vw;
+  font-size: 2vh;
+}
+
+.dashboard-table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dashboard-table th{
+  background-color: white;
+text-align: left;
+color: #292929;
+padding-left: 1vw;
+padding-top: 2vh;
+height: 4vh;
+font-size: 2vh;
+}
+
+.dashboard-table td{
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  padding-left: 1vw;
+ font-size: 1.7vh;
+}
+
+.dashboard-table td, .dashboard-table th {
+  border-top: 1px solid lightgray;
+}
+
+.dashboard-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.dashboard-table tr:hover {background-color: #ddd;}
+
+.dashboard-table th {
+  background-color: white;
+  color: #292929;
+}
+
+.dashboard-table-wrapper{
+  overflow:hidden;
+  height: 73vh;
+}
+
+.dashboard-footer{
+  border-top-style: solid;
+      border-left-style: solid;
+      border-color: lightgrey;
+      width: 100%;
+      height: 5vh;
+      border-width: thin;
+}
+
+.pagination{
+  display: flex;
+width: 30%;
+margin-left: auto;
+margin-right: auto;
+margin-top: 1vh;
+}
+
+.pagination-arrow-left{
+  margin-right: 10%;
+  font-size: 2vh;
+}
+
+.pagination-text{
+ font-size: 2vh;
+ text-align: center;
+}
+
+.pagination-arrow-right{
+  margin-left: 10%;
+  font-size: 2vh;
+}
+
+.footer-button{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 5vh;
+  width: 10vw;
+  font-size: 2vh;
+  font-weight: 500;
+}
+
+.footer-button-text{
+  margin-top: 1vh;
+}
+
+.order-by-header{
+  display: flex;
+  width: fit-content;
+}
+
+.order-by-arrow{
+  width: fit-content;
+  margin-left: 0.3vw;
+  color: lightgray;
+  font-weight: 900;
+}
+
+.upside-down{
+  transform: rotate(180deg);
+}
+
+.activeOrderBy{
+  color: black!important;
+}
+
+.dashboard-klant-input-container{
+  height: 46vh;
+  width: 96%;
+  margin-left: 2%;
+}
+
+.klant-file-table-wrapper{
+  height: 27vh;
+  overflow: hidden;
+}
+
+.dashboard-klant-input-box{
+  width: 25%;
+  height: 8.5vh;
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+}
+
+.klant-input-titel{
+  margin-top: 3%;
+margin-bottom: 3%;
+font-weight: 500;
+font-size: 1.8vh;
+}
+
+.dashboard-klant-input-field{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 80%;
+  height: 50%;
+  font-size: 2vh;
+  padding-left: 3%;
+}
+
+.dashboard-klant-input-field-postcode{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 50%;
+  height: 100%;
+  font-size: 2vh;
+  padding-left: 3%;
+  margin-right: 10%;
+}
+
+.dashboard-klant-input-field-huisnummer{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 20%;
+  height: 100%;
+  font-size: 2vh;
+  padding-left: 3%;
+}
+
+.klant-input-save-button{
+  font-weight: 900;
+  margin-top: 4vh;
+  margin-left: 5vw;
+  font-size: 3vh;
+}
+
+.klant-input-terug-button{
+position: fixed;
+right: 2vw;
+top: 2vh;
+font-size: 2vh;
+font-weight: 500;
+}
+
+.header-icon{
+  font-size: 4vh!important;
+  margin-right: 1vw!important;
+}
+
+.add-contract-button{
+  font-size: 2vh;
+font-weight: 900;
+padding: 1vh;
+margin-left: 2vw;
+display: flex;
+width: fit-content;
+}
+
+.add-contract-icon{
+  margin-left: 0.5vw;
+  margin-top: 0.5vh;
+}
+
+.upload-file-modal{
+  position: fixed;
+  width: 20%;
+  height: fit-content;
+  top: 30%;
+  left: 40%;
+  z-index: 2;
+  background-color: white;
+  border-radius: 5px;
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+}
+
+.upload-box{
+  width: 90%;
+  height: 50%;
+  border-style: dashed;
+  border-width: 3px;
+  border-color: lightgray;
+  font-size: 2vh;
+  font-weight: 900;
+  line-height: 200%;
+}
+
+.modal-hidden-file-input{
+  text-align: center;
+  margin-left: 5%;
+  width: 90%;
+  height: 50%;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+}
+
+.upload-file-icon{
+  font-size: 9vh!important;
+}
+
+.text-uploaded-file{
+  margin-top: 1vh;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 1vh;
+  max-width: 20vw;
+  overflow-wrap: anywhere;
+}
+
+.add-customer-button{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 5vh;
+  font-size: 2vh;
+  display: flex;
   padding: 1vh;
-  background-color: grey;
 }
 
-#voordelen{
+.overzicht-titel{
+  font-weight: 900;
+  margin-left: 1vw;
+}
+
+.overzicht-value{
+  margin-left: 2%;
+}
+
+.half-modal{
+  height: 100%;
+  width: 50%;
+}
+
+.text-blok-row{
+  margin-top: 2vh;
+  width: 100%;
+  display: flex;
+  height: 37vh;
+  margin-left: 1%;
+}
+
+.half-row-text-container{
+  width: 50%;
+  height: 100%;
+}
+
+.dashboard-text-area{
+  width: 90%;
+  height: 75%;
+  margin-right: 5%;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  font-size: 2vh;
+  resize: none;
+}
+
+.dashboard-klant-input-container-full {
+    height: 78vh;
+    width: 96%;
+    margin-left: 2%;
+}
+
+.button-fixed-bottom-right{
+  font-weight: 900;
+font-size: 3vh;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 1%;
+}
+
+.create-ticket-modal{
+  position: fixed;
+  width: 20%;
+  height: 25%;
+  top: 35%;
+  left: 40%;
+  z-index: 2;
+  background-color: white;
+  border-radius: 5px;
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+}
+
+.create-ticket-titel{
+  font-size: 3vh;
+    font-weight: 500;
+    margin-left: 2vw;
+    margin-top: 2vh
+}
+
+.reminders-container{
+  height: 78vh;
+  width: 90vw;
+  display: flex;
+}
+
+.reminders-box{
+  height: 100%;
+  width: 30vw;
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 0.1px;
+}
+
+.reminders-box-titel {
+  font-weight: 900;
+  font-size: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  margin-left: 3vw;
+}
+
+.reminder-row{
+  display: flex;
+  margin-left: 3vw;
+  margin-bottom: 0.5vh;
+  font-size: 2vh!important;
+  width: 80%;
+}
+
+.reminders-add-container{
+  margin-left: 3vw;
+  width: 60%;
+}
+
+.reminders-input-text{
+  font-size: 2vh;
+}
+
+.reminders-text-input{
+  height: 3vh;
+  margin-top: 0.5vh;
+  width: 100%;
+  font-size: 2vh;
+  padding-left: 0.5vw;
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+}
+
+.reminders-add-button{
+  text-align: center;
+  width: 100%;
+  margin-top: 0.5vh;
+}
+
+.active-reminder-text{
+  margin-left: 0.5vw;
+}
+
+.reminder-text-date{
+  margin-left: 0.5vw;
+  font-size: 1.5vh;
+  margin-top: 1%;
+}
+
+.reminders-box{
+  height: 73vh;
+}
+
+.home-container{
+  height: 78vh;
+  width: 90vw;
+}
+
+.home-content-box-row{
+  width: 100%;
+  height: 50%;
+  display: flex;
+}
+
+.home-content-box{
+  width: 25%;
+  height: 100%;
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 0.1px;
   text-align: center;
 }
 
-footer{
-  text-align: center;
+.home-content-titel{
+  margin-top: 7.5%;
+  font-size: 3vh;
+}
+
+.home-content-info-container{
+  margin-top: 7.5%;
+}
+
+.home-content-info-row{
+  margin-bottom: 1.2vh;
+  width: 100%;
+  display: flex;
+  font-size: 2vh;
+}
+
+.home-content-info-half-row-left{
+  width: 50%;
+  text-align: right;
+}
+
+.home-content-info-half-row-right{
+  width: 45%;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.home-add-button{
+  display: flex;
+  font-size: 2vh!important;
+  width: fit-content;
+  float: right;
+  margin-right: 0.5vw;
+  cursor: pointer;
+}
+
+.color-red{
+  color: red;
+}
+
+.margin-top-8{
+  margin-top: 8%;
+}
+
+.home-reminder-container{
+  height: 60%;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.aanvraagOverzichtHandtekening{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 92%!important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  margin-bottom: 0.5vh;
+  height: 20vh !important;
+}
+
+.handtekening-undo-button{
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
+.reparatie-overzicht-textarea{
+  margin-left: 5%;
+border: solid;
+border-width: 0.1px;
+border-color: lightgray;
+border-radius: 5px;
+height: 10%;
+margin-top: 1vh;
+margin-bottom: 1vh;
+padding-left: 1%;
+height: 10vh;
+width: 80%;
+overflow: hidden;
+overflow-y: scroll;
+}
+
+.reparatieOverzichtHandtekening{
+  border: solid;
+  border-width: 0.1px;
+  border-color: lightgray;
+  border-radius: 5px;
+  width: 92%!important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  margin-bottom: 0.5vh;
+  height: 19vh!important;
+}
+
+.menu-item-icon{
+  margin-right: 0.2vw;
+  vertical-align: middle;
+}
+
+.table-icon{
+  font-size: 1.5vh!important;
 }

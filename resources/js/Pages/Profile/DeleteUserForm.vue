@@ -73,6 +73,7 @@
         data() {
             return {
                 confirmingUserDeletion: false,
+                deleting: false,
 
                 form: this.$inertia.form({
                     '_method': 'DELETE',

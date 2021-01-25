@@ -28,6 +28,37 @@ body {
   z-index: -2;
  }
 
+ #customers{
+   height: 100vh!important;
+   padding-top: 5vh;
+ }
+
+ #products{
+   height: 100vh!important;
+   padding-top: 5vh;
+ }
+
+ #about{
+   height: 90vh!important;
+   background-color: #c0deec;
+ }
+
+ #contact{
+   height: 80vh!important;
+   background-color: #c0deec;
+ }
+
+ #footer{
+   height: 5vh !important;
+background-color: #83919a;
+text-align: center;
+margin-top: 0px !important;
+padding: 0.5vh;
+ }
+
+ .footer-text{
+ }
+
  .md-toolbar{
    margin-top: 13vh;
    z-index: 2;
@@ -71,12 +102,107 @@ line-height: 8vh;
 color: #49494a;
 }
 
+.product-container{
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.margin-top-2vh{
+  margin-top: 2vh;
+}
+
+.product-row{
+  width: 100%;
+}
+
+.product-block{
+  position: relative;
+  text-align: center;
+  width: 20vw;
+  height: 35vh;
+}
+
+.product-block p {
+  position: absolute;
+    width: 95%;
+    left: 0px;
+    bottom: 0;
+    height: 10%;
+    font-family: Lato Regular;
+    font-size: 2vh;
+    line-height: 4vh;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4)
+  }
+
+.product-block img {
+  width: 100%;
+  height: 100%!important;
+}
+
+.all-products-link{
+  font-family: Lato Regular;
+  text-align: right;
+  margin-right: 13vw;
+  margin-bottom: 5vh;
+}
+
 .section-titel{
-font-family: Lato Regular;
-font-size: 5vh;
-margin-left: 10vw;
-margin-top: 10vh;
-margin-bottom: 10vh;
+  font-family: Lato Regular;
+  font-size: 5vh;
+  margin-left: 11vw;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  color: #49494a;
+}
+
+#contact .form{
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+#contact img{
+  height: 60vh;
+}
+
+#customers img {
+  height: 60vh;
+  margin-right: 2vw;
+}
+
+#customers .md-gutter {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+#about .container{
+  display: flex;
+}
+
+#about img{
+  width: 30vw;
+  height: 60vh;
+  margin-top: 15vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  box-shadow: 0px 0px 20px 16px rgba(0, 0, 0, 0.2);
+}
+
+.about-tekst-blok{
+  margin-top: 15vh;
+}
+
+.about-tekst-blok h2{
+  font-family: Lato Regular;
+  font-size: 5vh;
+  color: #49494a;
+}
+
+.about-tekst-blok p{
+  width: 35vw;
+  font-family: Lato Regular;
+  font-size: 3vh;
+  line-height: 3.5vh;
 }
 
  .home-menu{
@@ -85,7 +211,7 @@ margin-bottom: 10vh;
 
  .logo-top{
    width: 18vw;
-   box-shadow: 0px 0px 20px 16px rgba(0, 0, 0, 0.2);
+   // box-shadow: 0px 0px 20px 16px rgba(0, 0, 0, 0.2);
  }
 
  .logo-container{

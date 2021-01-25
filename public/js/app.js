@@ -9720,8 +9720,144 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {}
+  components: {},
+  data: function data() {
+    return {
+      name: "",
+      email: "",
+      number: "",
+      message: "",
+      checkbox: false
+    };
+  }
 });
 
 /***/ }),
@@ -42660,61 +42796,194 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "header" } },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "md-toolbar",
-        {
-          staticClass: "md-transparent home-menu md-toolbar-offset",
-          attrs: { "md-elevation": 0 }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "md-toolbar-section-start" },
-            [
-              _c("md-button", { staticClass: "top-menu-button" }, [
-                _vm._v("Home")
-              ]),
-              _vm._v(" "),
-              _c("md-button", { staticClass: "top-menu-button" }, [
-                _vm._v("About")
-              ])
-            ],
-            1
-          ),
+  return _c("div", [
+    _c(
+      "div",
+      { attrs: { id: "header" } },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "md-toolbar",
+          {
+            staticClass: "md-transparent home-menu md-toolbar-offset",
+            attrs: { "md-elevation": 0 }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "md-toolbar-section-start" },
+              [
+                _c("md-button", { staticClass: "top-menu-button" }, [
+                  _vm._v("Home")
+                ]),
+                _vm._v(" "),
+                _c("md-button", { staticClass: "top-menu-button" }, [
+                  _vm._v("About")
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "md-toolbar-section-end" },
+              [
+                _c("md-button", { staticClass: "top-menu-button" }, [
+                  _vm._v("Shop")
+                ]),
+                _vm._v(" "),
+                _c("md-button", { staticClass: "top-menu-button" }, [
+                  _vm._v("Contact")
+                ]),
+                _vm._v(" "),
+                _c("md-button", [
+                  _c("img", {
+                    attrs: { src: "/images/shopping_cart-24px.svg" }
+                  })
+                ])
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(1)
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _vm._m(4),
+    _vm._v(" "),
+    _c("div", { staticClass: "md-elevation-20", attrs: { id: "contact" } }, [
+      _c("div", { staticClass: "md-layout md-gutter" }, [
+        _c("div", { staticClass: "md-layout-item" }, [
+          _c("h2", { staticClass: "section-titel" }, [_vm._v("Contact.")]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "md-toolbar-section-end" },
+            { staticClass: "form" },
             [
-              _c("md-button", { staticClass: "top-menu-button" }, [
-                _vm._v("Shop")
-              ]),
+              _c(
+                "md-field",
+                [
+                  _c("label", [_vm._v("Name*")]),
+                  _vm._v(" "),
+                  _c("md-input", {
+                    model: {
+                      value: _vm.name,
+                      callback: function($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "md-helper-text" }, [
+                    _vm._v("Name")
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("md-button", { staticClass: "top-menu-button" }, [
-                _vm._v("Contact")
-              ]),
+              _c(
+                "md-field",
+                [
+                  _c("label", [_vm._v("E-mail*")]),
+                  _vm._v(" "),
+                  _c("md-input", {
+                    model: {
+                      value: _vm.email,
+                      callback: function($$v) {
+                        _vm.email = $$v
+                      },
+                      expression: "email"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "md-helper-text" }, [
+                    _vm._v("E-mail")
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("md-button", [
-                _c("img", { attrs: { src: "/images/shopping_cart-24px.svg" } })
-              ])
+              _c(
+                "md-field",
+                [
+                  _c("label", [_vm._v("Telephone number")]),
+                  _vm._v(" "),
+                  _c("md-input", {
+                    model: {
+                      value: _vm.number,
+                      callback: function($$v) {
+                        _vm.number = $$v
+                      },
+                      expression: "number"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "md-helper-text" }, [
+                    _vm._v("Telephone number")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-field",
+                [
+                  _c("label", [_vm._v("Message*")]),
+                  _vm._v(" "),
+                  _c("md-input", {
+                    model: {
+                      value: _vm.message,
+                      callback: function($$v) {
+                        _vm.message = $$v
+                      },
+                      expression: "message"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "md-helper-text" }, [
+                    _vm._v("Message")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-checkbox",
+                {
+                  model: {
+                    value: _vm.checkbox,
+                    callback: function($$v) {
+                      _vm.checkbox = $$v
+                    },
+                    expression: "checkbox"
+                  }
+                },
+                [
+                  _vm._v(
+                    "I approve my data being saved and used in accordance with our privacy policy."
+                  )
+                ]
+              )
             ],
             1
           )
-        ]
-      ),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2)
-    ],
-    1
-  )
+        ]),
+        _vm._v(" "),
+        _vm._m(5)
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(6)
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -42723,7 +42992,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "logo-container" }, [
       _c("img", {
-        staticClass: "logo-top",
+        staticClass: "logo-top md-elevation-20",
         attrs: { src: "/images/logo.jpeg" }
       })
     ])
@@ -42747,7 +43016,144 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { attrs: { id: "products" } }, [
-      _c("h2", { staticClass: "section-titel" }, [_vm._v("Products")])
+      _c("h2", { staticClass: "section-titel" }, [_vm._v("Products.")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "product-container" }, [
+        _c("div", { staticClass: "md-layout md-gutter" }, [
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md-layout md-gutter margin-top-2vh" }, [
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "md-layout-item product-block" }, [
+            _c("img", { attrs: { src: "/images/product1.png" } }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Categorie Titel")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("h2", { staticClass: "all-products-link" }, [
+        _vm._v("See all available products")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "about" } }, [
+      _c("div", { staticClass: "container" }, [
+        _c("img", { attrs: { src: "/images/about-image.png" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "about-tekst-blok" }, [
+          _c("h2", [_vm._v("About Felisa.")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt nulla a orci condimentum laoreet. Donec tortor ante, tincidunt quis arcu eu, rutrum blandit dui. Pellentesque ut lectus ex. Donec cursus lacus sed lorem eleifend auctor. Sed ac erat iaculis, fringilla odio id, dictum quam. Sed efficitur congue faucibus. Nunc ut nulla mauris. Donec viverra sapien vitae justo ornare porttitor. Nunc lectus magna, tincidunt eget dapibus sed, eleifend id lorem. Pellentesque malesuada eros quis tellus hendrerit accumsan."
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "customers" } }, [
+      _c("h2", { staticClass: "section-titel" }, [_vm._v("Happy customers.")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "md-layout md-gutter" }, [
+        _c("div", { staticClass: "md-layout-item" }, [
+          _c("img", { attrs: { src: "/images/review1.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md-layout-item" }, [
+          _c("img", { attrs: { src: "/images/review1.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md-layout-item" }, [
+          _c("img", { attrs: { src: "/images/review1.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "md-layout-item" }, [
+          _c("img", { attrs: { src: "/images/review1.png" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("h2", { staticClass: "all-products-link" }, [
+        _vm._v("See all Happy Customers")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "md-layout-item" }, [
+      _c(
+        "h2",
+        {
+          staticClass: "section-titel",
+          staticStyle: { "margin-left": "0!important" }
+        },
+        [_vm._v("Instagram.")]
+      ),
+      _vm._v(" "),
+      _c("img", { attrs: { src: "/images/instagram.png" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "footer" } }, [
+      _c("p", { staticClass: "footer-text" }, [
+        _vm._v(
+          "Copyright 2021 Felisa, Privacy Policy, Terms of Services, Return Policy."
+        )
+      ])
     ])
   }
 ]

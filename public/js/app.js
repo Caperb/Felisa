@@ -9712,6 +9712,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {}
 });
@@ -42654,6 +42662,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { attrs: { id: "header" } },
     [
       _vm._m(0),
       _vm._v(" "),
@@ -42668,9 +42677,13 @@ var render = function() {
             "div",
             { staticClass: "md-toolbar-section-start" },
             [
-              _c("md-button", [_vm._v("Home")]),
+              _c("md-button", { staticClass: "top-menu-button" }, [
+                _vm._v("Home")
+              ]),
               _vm._v(" "),
-              _c("md-button", [_vm._v("About")])
+              _c("md-button", { staticClass: "top-menu-button" }, [
+                _vm._v("About")
+              ])
             ],
             1
           ),
@@ -42679,15 +42692,16 @@ var render = function() {
             "div",
             { staticClass: "md-toolbar-section-end" },
             [
-              _c("md-button", [_vm._v("Shop")]),
+              _c("md-button", { staticClass: "top-menu-button" }, [
+                _vm._v("Shop")
+              ]),
               _vm._v(" "),
-              _c("md-button", [_vm._v("Contact")]),
+              _c("md-button", { staticClass: "top-menu-button" }, [
+                _vm._v("Contact")
+              ]),
               _vm._v(" "),
               _c("md-button", [
-                _c("img", {
-                  staticClass: "logo-top",
-                  attrs: { src: "/images/shopping_cart-24px.svg" }
-                })
+                _c("img", { attrs: { src: "/images/shopping_cart-24px.svg" } })
               ])
             ],
             1
@@ -42695,9 +42709,9 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("img", { attrs: { src: "https://picsum.photos/1920/900" } }),
+      _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticStyle: { height: "25vh" } })
+      _vm._m(2)
     ],
     1
   )
@@ -42712,6 +42726,28 @@ var staticRenderFns = [
         staticClass: "logo-top",
         attrs: { src: "/images/logo.jpeg" }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "header-container" }, [
+      _c("p", [
+        _vm._v(
+          "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur"
+        )
+      ]),
+      _vm._v(" "),
+      _c("img", { attrs: { src: "https://picsum.photos/1920/900" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "products" } }, [
+      _c("h2", { staticClass: "section-titel" }, [_vm._v("Products")])
     ])
   }
 ]

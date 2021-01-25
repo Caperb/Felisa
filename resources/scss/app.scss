@@ -1,5 +1,25 @@
 @import 'includes.scss';
 
+@font-face {
+  font-family: "Lato Semibold Italic";
+  src: url("/fonts/Lato-SemiboldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Lato Italic";
+  src: url("/fonts/Lato-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Lato Regular";
+  src: url("/fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Lato Semibold";
+  src: url("/fonts/Lato-Semibold.ttf");
+}
+
 body {
   color: #292929;
   font-family: 'Montserrat', sans-serif !important;
@@ -7,6 +27,57 @@ body {
   background-color: #eaeaea;
   z-index: -2;
  }
+
+ .md-toolbar{
+   margin-top: 13vh;
+   z-index: 2;
+ }
+
+ .md-toolbar button{
+  font-size: 4vh!important;
+  text-transform: none!important;
+  margin-right: 2.5vw!important;
+  margin-left: 2.5vw!important;
+  color: #49494a!important;
+  font-family: Lato Regular;
+ }
+
+ .md-toolbar button:first-child{
+   margin-left: 10vw!important;
+ }
+
+ .md-toolbar button:last-child{
+   height: 5vh!important;
+ }
+
+ .md-toolbar img{
+  height: 5vh!important;
+ }
+
+ .header-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.header-container p {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-family: Lato Regular;
+font-size: 7vh;
+line-height: 8vh;
+color: #49494a;
+}
+
+.section-titel{
+font-family: Lato Regular;
+font-size: 5vh;
+margin-left: 10vw;
+margin-top: 10vh;
+margin-bottom: 10vh;
+}
 
  .home-menu{
    position: absolute!important;
@@ -21,6 +92,7 @@ body {
    text-align: center;
     width: -webkit-fill-available;
     position: absolute;
+    z-index: 1;
  }
 
  .float-left{

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use Illuminate\Support\Facades\Mail;
 use Mollie\Laravel\Facades\Mollie;
 
@@ -24,6 +25,93 @@ class ShopController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+     public function searchProducts(Request $request){
+
+       return DB::table('products')
+       ->where('categorie', '=', $request->main)
+       ->orWhere('subCategorie', '=', $request->sub)
+       ->orderBy('created_at', 'desc')
+       ->get();
+
+     }
+
+     public function getAllProducts()
+     {
+         return DB::table('products')
+         ->orderBy('created_at', 'desc')
+         ->get();
+     }
+
+     public function getAllCategories()
+     {
+         return DB::table('categorie')
+         ->where('type', '=', 'main')
+         ->orderBy('positie', 'asc')
+         ->get();
+     }
+
+     public function getAllSubCategories()
+     {
+         return DB::table('categorie')
+         ->where('type', '=', 'secondary')
+         ->orderBy('positie', 'asc')
+         ->get();
+     }
+
+     public function getCategorieName(Request $request){
+
+       return DB::table('categorie')
+       ->where('id', '=', $request->id)
+       ->pluck('naam');
+
+     }
+
+     public function getKeuzeOpties(Request $request){
+
+       $allOpties = array();
+
+       foreach ($request->id as $id) {
+         $opties = DB::table('opties')
+         ->where('opties.id', '=', $id)
+         ->leftJoin('keuze_opties', 'opties.id', '=', 'keuze_opties.optieID')
+         ->get();
+         array_push($allOpties, $opties);
+       }
+
+       return $allOpties;
+
+     }
+
+     public function getRelatedProducts(Request $request){
+
+       $subCategorie = DB::table('products')
+       ->where('id', '!=', $request->id)
+       ->where('categorie', '=', $request->categorie)
+       ->where('subCategorie', '=', $request->subCategorie)
+       ->take(4)
+       ->get();
+
+       if (count($subCategorie) == 4) {
+         return $subCategorie;
+       }else {
+         $categorie = DB::table('products')
+         ->where('id', '!=', $request->id)
+         ->where('categorie', '=', $request->categorie)
+         ->take(4)
+         ->get();
+       }
+
+       if (count($categorie) == 4) {
+         return $categorie;
+       }else {
+         return DB::table('products')
+         ->where('id', '!=', $request->id)
+         ->take(4)
+         ->get();
+       }
+
+
+     }
 
      public function preparePayment()
      {

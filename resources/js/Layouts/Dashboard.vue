@@ -32,11 +32,29 @@
         </md-list-item>
 
         <md-list-item md-expand>
-          <md-icon>supervisor_account</md-icon>
-          <span class="md-list-item-text">Klanten</span>
+          <md-icon><span class="material-icons">edit_note</span></md-icon>
+          <span class="md-list-item-text">Artikelen</span>
           <md-list slot="md-expand">
-            <md-list-item class="md-inset" @click="setActivePage('customers', 'none')"><md-icon>list</md-icon>Overzicht</md-list-item>
-            <md-list-item class="md-inset" @click="setActivePage('customers','addCustomer')"><md-icon>person_add</md-icon>Aanmaken</md-list-item>
+            <md-list-item class="md-inset" @click="setActivePage('products', 'none')"><md-icon>list</md-icon>Overzicht</md-list-item>
+            <md-list-item class="md-inset" @click="setActivePage('products','addProduct')"><md-icon>note_add</md-icon>Aanmaken</md-list-item>
+          </md-list>
+        </md-list-item>
+
+        <md-list-item md-expand>
+          <md-icon><span class="material-icons">dns</span></md-icon>
+          <span class="md-list-item-text">Categorieën</span>
+          <md-list slot="md-expand">
+            <md-list-item class="md-inset" @click="setActivePage('categorie', 'none')"><md-icon>list</md-icon>Overzicht</md-list-item>
+            <md-list-item class="md-inset" @click="setActivePage('categorie','addCategorie')"><md-icon>note_add</md-icon>Aanmaken</md-list-item>
+          </md-list>
+        </md-list-item>
+
+        <md-list-item md-expand>
+          <md-icon><span class="material-icons">ballot</span></md-icon>
+          <span class="md-list-item-text">Artikel opties</span>
+          <md-list slot="md-expand">
+            <md-list-item class="md-inset" @click="setActivePage('optie', 'none')"><md-icon>list</md-icon>Overzicht</md-list-item>
+            <md-list-item class="md-inset" @click="setActivePage('optie','addOptie')"><md-icon>note_add</md-icon>Aanmaken</md-list-item>
           </md-list>
         </md-list-item>
 
@@ -49,10 +67,10 @@
           </md-list>
         </md-list-item>
 
-        <md-list-item @click="setPage('home')">
+        <!-- <md-list-item @click="setPage('home')">
         <md-icon>home</md-icon>
           <span class="md-list-item-text">Onboarding</span>
-        </md-list-item>
+        </md-list-item> -->
 
         <md-list-item @click="logout" class="md-listitem-bot">
         <md-icon>backspace</md-icon>
@@ -69,7 +87,9 @@
       <Tickets @setActivePage="setActivePage" @selectedSubPageReset="selectedSubPageReset" :toggleAddTicket="toggleAddTicket" :selectedSubPage="selectedSubPage" :allUsers="allUsers" v-if="activePage == 'tickets'"/>
       <Repairs :allUsers="allUsers" :selectedSubPage="selectedSubPage" @setActivePage="setActivePage" v-if="activePage == 'repairs'"/>
       <Orders :allUsers="allUsers" :selectedSubPage="selectedSubPage" @setActivePage="setActivePage" v-if="activePage == 'orders'"/>
-      <Customers :selectedSubPage="selectedSubPage" v-if="activePage == 'customers'"/>
+      <Products :selectedSubPage="selectedSubPage" v-if="activePage == 'products'"/>
+      <Categorie :selectedSubPage="selectedSubPage" v-if="activePage == 'categorie'"/>
+      <Optie :selectedSubPage="selectedSubPage" v-if="activePage == 'optie'"/>
       <Users :selectedSubPage="selectedSubPage" v-if="activePage == 'users'"/>
     </div>
     </div>
@@ -81,8 +101,10 @@ import Reminders from '@/Layouts/Dashboard/Reminders'
 import Tickets from '@/Layouts/Dashboard/Tickets'
 import Repairs from '@/Layouts/Dashboard/Repairs'
 import Orders from '@/Layouts/Dashboard/Orders'
-import Customers from '@/Layouts/Dashboard/Customers'
+import Products from '@/Layouts/Dashboard/Products'
 import Users from '@/Layouts/Dashboard/Users'
+import Categorie from '@/Layouts/Dashboard/Categorie'
+import Optie from '@/Layouts/Dashboard/Optie'
 
     export default {
         components: {
@@ -91,8 +113,10 @@ import Users from '@/Layouts/Dashboard/Users'
           Tickets,
           Repairs,
           Orders,
-          Customers,
+          Products,
           Users,
+          Categorie,
+          Optie,
           name: 'ListExpansion',
         },
 

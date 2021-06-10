@@ -231,18 +231,6 @@ import {MDCRipple} from '@material/ripple';
             this.$emit('setActivePage', page, subPage);
           },
 
-          test(){
-            axios({
-              url: '/save-handtekening', //your url
-              method: 'POST',
-              responseType: 'blob', // important
-            }).then((response) => {
-              const image = window.URL.createObjectURL(new Blob([response.data]));
-              const element = document.getElementById('handtekeningImage');
-              element.setAttribute('src', image); //or any other extension
-            });
-          },
-
 
           calcDateExpired(date){
             if(date < this.date){

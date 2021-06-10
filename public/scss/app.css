@@ -34,6 +34,7 @@ body {
 #products {
   height: 100vh !important;
   padding-top: 5vh;
+  margin-bottom: 5vh;
 }
 
 #about {
@@ -54,13 +55,18 @@ body {
   padding: 0.5vh;
 }
 
-.md-toolbar {
-  margin-top: 13vh;
+.footer-text {
+  margin: 0px;
+  padding: 0.5vw;
+}
+
+.home-md-toolbar {
+  margin-top: 5vw;
   z-index: 2;
 }
 
-.md-toolbar button {
-  font-size: 4vh !important;
+.home-top-menu-button {
+  font-size: 2vw !important;
   text-transform: none !important;
   margin-right: 2.5vw !important;
   margin-left: 2.5vw !important;
@@ -68,16 +74,25 @@ body {
   font-family: Lato Regular;
 }
 
-.md-toolbar button:first-child {
+.md-toolbar button {
+  font-size: 2vw !important;
+  text-transform: none !important;
+  margin-right: 2.5vw !important;
+  margin-left: 2.5vw !important;
+  color: #49494a !important;
+  font-family: Lato Regular;
+}
+
+.md-toolbar a:first-child {
   margin-left: 10vw !important;
 }
 
-.md-toolbar button:last-child {
+.md-toolbar a:last-child {
   height: 5vh !important;
 }
 
 .md-toolbar img {
-  height: 5vh !important;
+  height: 2vw !important;
 }
 
 .header-container {
@@ -92,14 +107,25 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: Lato Regular;
-  font-size: 7vh;
-  line-height: 8vh;
+  font-size: 3vw;
+  line-height: 5vw;
   color: #49494a;
 }
 
 .product-container {
   margin-left: 10vw;
   margin-right: 10vw;
+}
+
+.cart-container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  padding-bottom: 10vh;
+}
+
+.cart-totaal-container {
+  width: 10vw;
+  float: right;
 }
 
 .margin-top-2vh {
@@ -113,8 +139,6 @@ body {
 .product-block {
   position: relative;
   text-align: center;
-  width: 20vw;
-  height: 35vh;
 }
 
 .product-block p {
@@ -139,13 +163,20 @@ body {
   font-family: Lato Regular;
   text-align: right;
   margin-right: 13vw;
-  margin-bottom: 5vh;
 }
 
 .section-titel {
   font-family: Lato Regular;
   font-size: 5vh;
   margin-left: 11vw;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  color: #49494a;
+}
+
+.product-page-titel {
+  font-family: Lato Regular;
+  font-size: 5vh;
   margin-top: 5vh;
   margin-bottom: 5vh;
   color: #49494a;
@@ -240,8 +271,13 @@ body {
   margin-right: auto;
 }
 
+.margin-auto-top-bottom {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .margin-right-1vw {
-  margin-right: 1vw;
+  margin-right: 1vw !important;
 }
 
 .margin-left-2vw {
@@ -258,6 +294,10 @@ body {
 
 .text-align-right {
   text-align: right;
+}
+
+.margin-left-3px {
+  margin-left: 3px;
 }
 
 .margin-left-5 {
@@ -278,6 +318,10 @@ body {
 
 .margin-top-2 {
   margin-top: 2%;
+}
+
+.margin-bottom-2vh {
+  margin-bottom: 2vh !important;
 }
 
 .margin-bottom-10 {
@@ -1549,5 +1593,57 @@ div .display-flex {
 
 .md-field > .md-icon {
   z-index: 0 !important;
+}
+
+.md-card-header {
+  padding: 0px !important;
+}
+
+.md-textarea {
+  resize: none !important;
+}
+
+.container-uploading-image img {
+  width: 20vw;
+  height: 20vw !important;
+}
+
+.container-uploading-image {
+  margin-right: auto;
+  margin-left: auto;
+  width: 20vw;
+  height: 20vw;
+  background-image: url(/images/square-placeholder.jpg);
+  background-size: cover;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.shop-link-container {
+  display: flex;
+}
+
+.color-white {
+  color: white !important;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.fill-available {
+  width: -webkit-fill-available;
+}
+
+.buy-button .md-button-content {
+  color: white;
 }
 

@@ -1060,3 +1060,13 @@ overflow-y: scroll;
 .table-icon{
   font-size: 1.5vh!important;
 }
+
+/* #product .md-card .md-title {
+    font-size: 3vh !important;
+    letter-spacing: 0;
+    line-height: 32px;
+} */
+
+.md-card-header {
+    padding: 0px !important;
+}

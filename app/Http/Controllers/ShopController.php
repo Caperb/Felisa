@@ -113,41 +113,41 @@ class ShopController extends Controller
 
      }
 
-     public function preparePayment()
-     {
-         $payment = Mollie::api()->payments->create([
-             "amount" => [
-                 "currency" => "EUR",
-                 "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
-             ],
-             "description" => "Order #12345",
-             "redirectUrl" => 'http://127.0.0.1:8000/',
-             "webhookUrl" => 'http://127.0.0.1:8000/mollie-webhook',
-             "metadata" => [
-                 "order_id" => "12345",
-             ],
-         ]);
+public function preparePayment()
+{
+    $payment = Mollie::api()->payments->create([
+        "amount" => [
+            "currency" => "EUR",
+            "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
+        ],
+        "description" => "Order #12345",
+        "redirectUrl" => 'https://felisa.verenmanta.com/',
+        "webhookUrl" => 'https://felisa.verenmanta.com/mollie-webhook',
+        "metadata" => [
+            "order_id" => "12345",
+        ],
+    ]);
 
-         // redirect customer to Mollie checkout page
-         return redirect($payment->getCheckoutUrl(), 303);
-     }
+    // redirect customer to Mollie checkout page
+    return redirect($payment->getCheckoutUrl(), 303);
+}
 
-     /**
-      * After the customer has completed the transaction,
-      * you can fetch, check and process the payment.
-      * This logic typically goes into the controller handling the inbound webhook request.
-      * See the webhook docs in /docs and on mollie.com for more information.
-      */
-     public function handleWebhookNotification(Request $request) {
-         $paymentId = $request->input('id');
-         $payment = Mollie::api()->payments->get($paymentId);
+/**
+ * After the customer has completed the transaction,
+ * you can fetch, check and process the payment.
+ * This logic typically goes into the controller handling the inbound webhook request.
+ * See the webhook docs in /docs and on mollie.com for more information.
+ */
+public function handleWebhookNotification(Request $request) {
+    $paymentId = $request->input('id');
+    $payment = Mollie::api()->payments->get($paymentId);
 
-         if ($payment->isPaid())
-         {
-             echo 'Payment received.';
-             // Do your thing ...
-         }
-     }
+    if ($payment->isPaid())
+    {
+        echo 'Payment received.';
+        // Do your thing ...
+    }
+}
 
 
 

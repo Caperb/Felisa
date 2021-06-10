@@ -19,7 +19,7 @@
         "laravel/jetstream": "^1.6",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "mollie/laravel-mollie": "2.14",
+        "mollie/laravel-mollie": "^2.0",
         "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {

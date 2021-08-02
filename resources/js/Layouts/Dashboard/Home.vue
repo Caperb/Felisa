@@ -4,18 +4,48 @@
 <!-- TOP ROW -->
   <div class="md-layout md-gutter top-row">
 
-    <!-- TICKETS -->
-    <div class="md-layout-item">
+
+    <!-- Ticket general -->
+      <div class="md-layout-item">
+        <md-card class="md-accent" md-with-hover>
+
+            <md-card-header>
+              <div class="card-icon">
+                <md-icon>shopping_cart</md-icon>
+              </div>
+              <div class="md-subhead ta-right">Nieuwe bestellingen</div>
+              <h3 class="md-title ta-right" v-text="this.data[18]"></h3>
+            </md-card-header>
+
+            <md-card-content st>
+            </md-card-content>
+
+            <hr>
+
+            <md-card-actions>
+            <div class="card-footer ">
+                  <div class="stats" @click="setActivePage('bestellingen')">
+
+                    <i class="material-icons text-danger">warning</i>
+                    <a href="#"><p v-text="this.data[1]" class="d-contents"></p>
+                    verlopen nieuwe bestellingen</a>
+                  </div>
+                </div>
+            </md-card-actions>
+        </md-card>
+
+        </div>
 
 <!-- Ticket general -->
+  <div class="md-layout-item">
     <md-card class="md-accent" md-with-hover>
 
         <md-card-header>
           <div class="card-icon">
-            <md-icon>source</md-icon>
+            <md-icon>build</md-icon>
           </div>
-          <div class="md-subhead ta-right">Openstaande tickets</div>
-          <h3 class="md-title ta-right" v-text="this.data[18]"></h3>
+          <div class="md-subhead ta-right">Bestellingen in progress</div>
+          <h3 class="md-title ta-right" v-text="this.data[22]"></h3>
         </md-card-header>
 
         <md-card-content st>
@@ -25,11 +55,11 @@
 
         <md-card-actions>
         <div class="card-footer ">
-              <div class="stats" @click="setActivePage('tickets', 'due')">
+              <div class="stats" @click="setActivePage('bestellingen')">
 
                 <i class="material-icons text-danger">warning</i>
-                <a href="#"><p v-text="this.data[1]" class="d-contents"></p>
-                verlopen tickets</a>
+                <a href="#"><p v-text="this.data[23]" class="d-contents"></p>
+                verlopen bestellingen in progress</a>
               </div>
             </div>
         </md-card-actions>
@@ -43,10 +73,10 @@
 
         <md-card-header>
           <div class="card-icon">
-            <md-icon>build</md-icon>
+            <md-icon>done</md-icon>
           </div>
-          <div class="md-subhead ta-right">Openstaande tickets</div>
-          <h3 class="md-title ta-right" v-text="this.data[19]"></h3>
+          <div class="md-subhead ta-right">Klaar liggende bestellingen</div>
+          <h3 class="md-title ta-right" v-text="this.data[24]"></h3>
         </md-card-header>
 
         <md-card-content st>
@@ -57,10 +87,10 @@
 
         <md-card-actions>
         <div class="card-footer ">
-              <div class="stats" @click="setActivePage('repairs', 'due')">
+              <div class="stats" @click="setActivePage('bestellingen')">
                 <i class="material-icons text-danger">warning</i>
-                <a href="#"><p v-text="this.data[11]" class="d-contents"></p>
-                verlopen tickets</a>
+                <a href="#"><p v-text="this.data[25]" class="d-contents"></p>
+                verlopen klaarliggende bestellingen</a>
               </div>
             </div>
         </md-card-actions>
@@ -73,27 +103,16 @@
 
         <md-card-header>
           <div class="card-icon">
-            <md-icon>shopping_cart</md-icon>
+            <md-icon>paid</md-icon>
           </div>
-          <div class="md-subhead ta-right">Openstaande bestellingen</div>
-          <h3 class="md-title ta-right" v-text="this.data[20]"></h3>
+          <div class="md-subhead ta-right">Verzonden bestellingen</div>
+          <h3 class="md-title ta-right" v-text="this.data[26]"></h3>
         </md-card-header>
 
         <md-card-content st >
 
         </md-card-content>
 
-        <hr>
-
-        <md-card-actions>
-        <div class="card-footer ">
-              <div class="stats" @click="setActivePage('orders', 'due')">
-                <i class="material-icons text-danger">warning</i>
-                <a href="#"><p v-text="this.data[6]" class="d-contents"></p>
-                verlopen bestellingen</a>
-              </div>
-            </div>
-        </md-card-actions>
     </md-card>
     </div>
   </div>
@@ -110,7 +129,7 @@
             <md-icon>notification_important</md-icon>
           </div>
          <div class="md-subhead ta-right">Herinneringen</div>
-          <h3 class="md-title ta-right" v-text="this.data[21]"></h3>
+          <h3 class="md-title ta-right">{{ this.reminderCount }}</h3>
         </md-card-header>
 
         <md-card-content st >
@@ -122,7 +141,7 @@
       </md-table-row>
 
       <md-table-row v-for="item in this.reminderData.data"  v-bind:key="item.id">
-        <md-table-cell md-numeric>1</md-table-cell>
+        <md-table-cell md-numeric>{{item.id}}</md-table-cell>
         <md-table-cell ><p v-text="item.name"></p></md-table-cell>
         <md-table-cell><span class="material-icons cursor-pointer" @click="setDone(item.id)">check_box_outline_blank</span></md-table-cell>
 
@@ -135,7 +154,7 @@
     </div>
 
 <!-- CONTRACTS -->
-    <div class="md-layout-item">
+    <!-- <div class="md-layout-item">
           <md-card class="md-accent big-md-card" md-with-hover>
 
         <md-card-header>
@@ -143,7 +162,7 @@
             <md-icon>insert_drive_file</md-icon>
           </div>
         <div class="md-subhead ta-right">Contracten</div>
-          <!-- <h3 class="md-title ta-right" v-text="this.data[16].data"></h3> -->
+          <h3 class="md-title ta-right" v-text="this.data[16].data"></h3>
         </md-card-header>
 
         <md-card-content st>
@@ -166,7 +185,7 @@
     </md-table>
         </md-card-content>
     </md-card>
-    </div>
+    </div> -->
   </div>
 
 </div>
@@ -187,6 +206,7 @@ import {MDCRipple} from '@material/ripple';
             response: '',
             reminderData: {},
             contractData: {},
+            reminderCount: 0,
             date: '',
             handtekening: '',
           }
@@ -202,7 +222,7 @@ import {MDCRipple} from '@material/ripple';
               if(this.response == 1){
                   this.response = '';
                   this.refreshReminderData();
-                  this.refreshcontractData();
+                  // this.refreshcontractData();
               }else{
                 alert('Er is iets mis gegaan met opslaan.');
               }
@@ -213,6 +233,7 @@ import {MDCRipple} from '@material/ripple';
             this.reminderData = this.data[15];
             this.contractData = this.data[16];
             this.date = this.data[17];
+            this.reminderCount = this.data[21];
           }
         },
 
@@ -255,6 +276,12 @@ import {MDCRipple} from '@material/ripple';
           refreshReminderData(){
             axios.get('home-refresh-reminders')
             .then(response => this.reminderData = response.data);
+            this.refreshReminderCount();
+          },
+
+          refreshReminderCount(){
+            axios.get('home-refresh-reminder-count')
+            .then(response => this.reminderCount = response.data);
           },
 
           refreshcontractData(){

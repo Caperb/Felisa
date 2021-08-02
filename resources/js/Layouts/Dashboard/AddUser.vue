@@ -9,7 +9,7 @@
       </md-card-header>
 
       <md-card-content st>
-        <div class="input-wrapper ta-center">
+        <div class="input-wrapper ta-center  pagina-content-editor">
           <md-field>
             <label>Naam</label>
             <md-input
@@ -68,7 +68,7 @@
             ></md-input>
           </md-field>
           <md-button
-            class="md-primary med-md-button"
+            class="md-primary md-raised"
             type="submit"
             @click="addUser()"
             >Aanmaken</md-button

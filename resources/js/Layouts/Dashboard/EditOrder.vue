@@ -80,7 +80,7 @@
               <h3 class="Subheading">Handtekening</h3>
               <img id="handtekeningImage" style="height: 150px" />
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="editOrder()"
                 >Bewerken</md-button>

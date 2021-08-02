@@ -50,7 +50,7 @@
 
           <md-step id="second" md-label="Reparatie gegevens">
             <!-- Repair information -->
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center  pagina-content-editor">
               <md-field>
                 <label>Beschrijving</label>
                 <md-textarea
@@ -71,7 +71,7 @@
                 ></md-input>
               </md-field>
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="addRepair()"
                 >Aanmaken</md-button

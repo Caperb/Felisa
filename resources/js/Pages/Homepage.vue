@@ -1,10 +1,11 @@
 <template>
   <div>
-<Home v-if="activePage =='home'" @setPage="setPage"/>
+<Home v-if="activePage =='home'" :selectedHeader='selectedHeader' @setPage="setPage"/>
 <Shop v-if="activePage =='shop'" :selectedCategorieProp='selectedCategorie' :selectedSubCategorieProp='selectedSubCategorie'
 :selectedCategorieNaamProp='selectedCategorieNaam' :selectedSubCategorieNaamProp='selectedSubCategorieNaam' @setPage="setPage"/>
 <Cart v-if="activePage =='cart'" :cartProp='cart' @editCart='editCart' @deleteProduct='deleteProduct' @setPage="setPage"/>
 <ProductDetailPage v-if="activePage =='productDetailPage'" :selectedItem='selectedItem' @addToCart="addToCart" @setPage="setPage"/>
+<HappyCustomers v-if="activePage =='happyCustomers'" @setPage="setPage"/>
 </div>
 </template>
 
@@ -13,13 +14,15 @@
   import Shop from '@/Layouts/homepage/Shop'
   import Cart from '@/Layouts/homepage/Cart'
   import ProductDetailPage from '@/Layouts/homepage/ProductDetailPage'
+  import HappyCustomers from '@/Layouts/homepage/HappyCustomers'
 
   export default {
   components: {
       Home,
       Shop,
       Cart,
-      ProductDetailPage
+      ProductDetailPage,
+      HappyCustomers,
   },
 
   data() {
@@ -32,6 +35,7 @@
           selectedCategorieNaam: '',
           selectedSubCategorieNaam: '',
           cart: [],
+          selectedHeader: '',
       }
   },
 
@@ -40,6 +44,11 @@
   methods: {
       setPage(value, item, item2, item3, item4) {
           this.activePage = value;
+          this.selectedHeader = '';
+
+          if (value == 'home') {
+            this.selectedHeader = item;
+          }
 
           if (value == 'productDetailPage') {
               this.selectedItem = item;
@@ -64,13 +73,16 @@
       },
 
       setNewCookie(){
-        var date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        document.cookie = "cart=" + JSON.stringify(this.cart) + "; expires=" + date.toUTCString();
+        var cookiesAllowed = this.getCookieCheck('cookieAllowed');
+
+        if (cookiesAllowed == '"yes"') {
+          var date = new Date();
+          date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+          document.cookie = "cart=" + JSON.stringify(this.cart) + "; expires=" + date.toUTCString();
+        }
       },
 
       addToCart(item) {
-
         var name = 'cart';
         // Get cookie using our custom function
         var firstName = this.getCookieCheck(name);
@@ -96,9 +108,14 @@
             }
         } else {
             this.cart.push(item);
-            var date = new Date();
-            date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-            document.cookie = "cart=" + JSON.stringify(this.cart) + "; expires=" + date.toUTCString();
+
+            var cookiesAllowed = this.getCookieCheck('cookieAllowed');
+
+            if (cookiesAllowed == '"yes"') {
+              var date = new Date();
+              date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+              document.cookie = "cart=" + JSON.stringify(this.cart) + "; expires=" + date.toUTCString();
+            }
         }
     },
 

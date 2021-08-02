@@ -50,7 +50,7 @@
           </md-step>
 
           <md-step v-if="this.item.type == 'keuze' || this.item.type == 'meerdereKeuzes'" id="second" md-label="Keuzes">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
               <div v-for="(keuze, index) in this.aantalKeuzes"  :key="keuze" class="md-layout md-gutter">
                 <div class="md-layout-item md-size-90">
               <md-field>
@@ -77,7 +77,7 @@
               >
 
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="editOptie()"
                 >Bijwerken</md-button

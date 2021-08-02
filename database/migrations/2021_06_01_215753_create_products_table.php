@@ -21,7 +21,10 @@ class CreateProductsTable extends Migration
             $table->string('subCategorie');
             $table->string('opties');
             $table->string('prijs');
+            $table->integer('gewicht');
             $table->string('foto');
+            $table->string('foto2');
+            $table->string('foto3');
             $table->timestamps();
         });
     }

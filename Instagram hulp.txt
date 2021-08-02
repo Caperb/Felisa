@@ -1,0 +1,49 @@
+IG token: IGQVJWMlA5eDZAoMlQzYktiYWZAUQkdpRUR4em5nQ0FBSmxNLXFQNzZA4NjBrZA00yTnpBeDgyMmRKM3N4dmtZANWYxd29YbF9NN01YbTdPd0luU1I3Vm9ENmJyRENEem5KM1NaS3o4TjRCOVF5VmhXVDBfcwZDZD
+
+IG code : AQCzx8TLkB8iIApIpjCU1f42V0MaULsRexQcNJyNxnxunzlveocz17spe42dBeTht2PHNgU01OrfiyQ6UQz_D6Dvk0NAQ8YUFHgmceCdUy6H2Bp2IFrEZ7N4YNaJZrjuhrcwH4CgWLTAjQJZrkAxE4h5JSlh7fIXOnwnNJqus3pCSlmFTFv_tqi7W_9hhzpkmnKszAL_q6R8EeJNQlPwPfLhItkBBk8V12x5lQ0OckHGoQ
+
+access_token": "IGQVJYeEJkVWM5eXlub1lTdDlJV1VRaHZAXcWh4dEYwTDhVaG1laGJWU0VtUmdCWTNFeXlRSEd2TXl1NjVySVU4b2NRdnAwcHhHR196ZAlNDSHV5YWJwSENiUVUyVFBhaVNKcUhDMGRpNnVVV01LTTFzVHh1dnhVZAmJtd0F3", "user_id": 17841434248360478
+
+{
+   "access_token": "IGQVJYLU05R1hKZADV1V2piRjBwaFduY2F1OVJHX2tOaExreWlwZAlZAHU3lNckcyeEowTXk2T0d3QXNzNXdfa2Jrd0lwNVRWM2RxQ3p2NTlXZAzJVWmJEcWNhSVhWVTFTR0ZAkUzBzaVJB",
+   "token_type": "bearer",
+   "expires_in": 5180342
+}
+
+https://graph.instagram.com/me/media?fields=id,caption&access_token=IGQVJYLU05R1hKZADV1V2piRjBwaFduY2F1OVJHX2tOaExreWlwZAlZAHU3lNckcyeEowTXk2T0d3QXNzNXdfa2Jrd0lwNVRWM2RxQ3p2NTlXZAzJVWmJEcWNhSVhWVTFTR0ZAkUzBzaVJB
+https://graph.instagram.com/17847888002608971?fields=id,media_type,media_url,username,timestamp&access_token=IGQVJYLU05R1hKZADV1V2piRjBwaFduY2F1OVJHX2tOaExreWlwZAlZAHU3lNckcyeEowTXk2T0d3QXNzNXdfa2Jrd0lwNVRWM2RxQ3p2NTlXZAzJVWmJEcWNhSVhWVTFTR0ZAkUzBzaVJB
+
+https://graph.instagram.com/refresh_access_token
+  ?grant_type=ig_refresh_token
+  &access_token=IGQVJWdDBqOVI1aGxoQlp3Y0Q4eFpocmFHV1lkM1gwMEh1ZAmt1OFdlM3EtS0pua1QtMTl0YkE1dllib1hRTExDYkp4WTNBajVTQ21sZAWJuOXlfUUVOZAlRhdFlId19pWExrRTFXM1JR
+
+
+curl -i -X GET "https://graph.instagram.com/access_token
+  ?grant_type=ig_exchange_token
+  &client_secret=0ac8f295064916005983790e226145a7
+  &access_token=IGQVJWQVdQTllWOFotdUVwdVJrUzAwRTZAwblJCTndGbWJuVjNLZAGs3SFBXTGsycmVwajN4RU1XRTNOUEhpaEk3WDlQNUVINmZAwOFZARYWRnSHFaYWl5ZADlvYWtqb3FKYnZAHZAzM2NWEyQ0ZAKV25NTW1pOFpPR3luRVpfazhJ"
+
+id":"3914633808665654","username":"felisa.handmade"
+
+
+curl -X GET \
+  'https://graph.instagram.com/17841434248360478?fields=id,username&access_token=IGQVJWQVdQTllWOFotdUVwdVJrUzAwRTZAwblJCTndGbWJuVjNLZAGs3SFBXTGsycmVwajN4RU1XRTNOUEhpaEk3WDlQNUVINmZAwOFZARYWRnSHFaYWl5ZADlvYWtqb3FKYnZAHZAzM2NWEyQ0ZAKV25NTW1pOFpPR3luRVpfazhJ'
+
+https://api.instagram.com/oauth/authorize
+  ?client_id=127246779487742
+  &redirect_uri=https://felisa.verenmanta.com/auth
+  &scope=user_profile,user_media
+  &response_type=code
+
+curl -X POST \
+  https://api.instagram.com/oauth/access_token \
+  -F client_id=127246779487742 \
+  -F client_secret=0ac8f295064916005983790e226145a7 \
+  -F grant_type=authorization_code \
+  -F redirect_uri=https://felisa.verenmanta.com/auth \
+  -F code=AQCzx8TLkB8iIApIpjCU1f42V0MaULsRexQcNJyNxnxunzlveocz17spe42dBeTht2PHNgU01OrfiyQ6UQz_D6Dvk0NAQ8YUFHgmceCdUy6H2Bp2IFrEZ7N4YNaJZrjuhrcwH4CgWLTAjQJZrkAxE4h5JSlh7fIXOnwnNJqus3pCSlmFTFv_tqi7W_9hhzpkmnKszAL_q6R8EeJNQlPwPfLhItkBBk8V12x5lQ0OckHGoQ
+
+curl -i -X GET "https://graph.instagram.com/access_token
+  ?grant_type=ig_exchange_token
+  &client_secret=0ac8f295064916005983790e226145a7
+  &access_token=IGQVJYeEJkVWM5eXlub1lTdDlJV1VRaHZAXcWh4dEYwTDhVaG1laGJWU0VtUmdCWTNFeXlRSEd2TXl1NjVySVU4b2NRdnAwcHhHR196ZAlNDSHV5YWJwSENiUVUyVFBhaVNKcUhDMGRpNnVVV01LTTFzVHh1dnhVZAmJtd0F3"

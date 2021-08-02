@@ -12,7 +12,7 @@
         <md-steppers md-alternative>
           <!-- Algemene Info -->
           <md-step id="first" md-label="Optie toevoegen">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
 
               <md-field>
                 <label>Naam optie</label>
@@ -35,7 +35,7 @@
 
 
               <md-button v-if="this.item.type == 'tekst'"
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="addOptie()"
                 >Aanmaken</md-button
@@ -47,7 +47,7 @@
           </md-step>
 
           <md-step v-if="this.item.type == 'keuze' || this.item.type == 'meerdereKeuzes'" id="second" md-label="Keuzes">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
 
               <md-field v-for="(keuze, index) in this.aantalKeuzes"  :key="keuze">
                 <label>Waarde keuze {{index + 1}}</label>
@@ -65,7 +65,7 @@
               >
 
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="addOptie()"
                 >Aanmaken</md-button

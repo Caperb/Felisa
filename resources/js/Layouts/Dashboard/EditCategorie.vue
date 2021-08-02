@@ -32,7 +32,7 @@
 
           <!-- Sub categories -->
           <md-step id="second" md-label="Sub categorieën">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
               <div class="md-layout md-gutter" v-for="sub in this.allSubs"  :key="sub">
                 <div class="md-layout-item md-size-85">
                   <md-field>
@@ -61,7 +61,7 @@
                 </div>
 
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="editCategorie()"
                 >Bijwerken</md-button

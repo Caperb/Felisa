@@ -91,7 +91,7 @@
         <md-table-head>Acties</md-table-head>
       </md-table-row>
 
-      <md-table-row v-for="item in this.donePaginationData.data" v-bind:key="item.id">
+      <md-table-row v-for="item in this.recentData" v-bind:key="item.id">
         <md-table-cell><p v-text="item.name"></p></md-table-cell>
         <md-table-cell><p v-text="item.user"></p></md-table-cell>
         <md-table-cell><span class="material-icons" @click="deleteReminder(item.id, index)">close</span></md-table-cell>
@@ -243,8 +243,15 @@ export default {
 
     refreshData() {
       axios
-        .post("all-reminders", { 'page': this.selectedPaginationPage })
+        .post("all-reminders")
         .then((response) => (this.data = response.data));
+        this.splitArray();
+    },
+
+    splitArray(){
+      this.activePaginationData = this.data[0];
+      this.donePaginationData = this.data[1];
+      this.recentData = this.data[2];
     },
 
     refreshDoneData() {

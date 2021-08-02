@@ -16,6 +16,14 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OptiesController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\BestellingController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\HappyCustomerController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\InstagramController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +40,11 @@ Route::get('', function () {
   return Inertia\Inertia::render('Homepage');
 })->name('homepage');
 
+//Bedankt voor de aankoop
+Route::get('/aankoop-gelukt', function () {
+  return Inertia\Inertia::render('BedanktVoorDeAankoop');
+})->name('Bedankt voor de aankoop!');
+
 // Route::get('/adminlogin', function () {
 //     return view('/auth/login');
 // });
@@ -40,9 +53,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::get('/klant-aanmaken', function () {
-    // Only authenticated users may enter...
-})->middleware('auth');
+//home
+Route::post('/send-contact-form', [ContactController::class, 'send']);
 
 //Klanten
 Route::post('/klant-aanmaken', [KlantController::class, 'add'])->middleware('auth');
@@ -109,6 +121,8 @@ Route::get('/all-home-data', [HomeController::class, 'getAll'])->middleware('aut
 Route::get('/home-refresh-reminders', [HomeController::class, 'refreshReminders'])->middleware('auth');
 Route::get('/home-refresh-contracts', [HomeController::class, 'refreshContracts'])->middleware('auth');
 Route::post('/change-contract-status', [HomeController::class, 'editContract'])->middleware('auth');
+Route::get('/home-refresh-reminder-count', [HomeController::class, 'refreshReminderCount'])->middleware('auth');
+
 
 //Bon
 Route::post('/print-bon', [BonController::class, 'getBon'])->middleware('auth');
@@ -145,3 +159,44 @@ Route::post('/get-keuze-opties', [ShopController::class, 'getKeuzeOpties']);
 Route::post('/get-related-products', [ShopController::class, 'getRelatedProducts']);
 Route::post('/prepare-payment', [ShopController::class, 'preparePayment']);
 Route::post('/mollie-webhook', [ShopController::class, 'handleWebhookNotification']);
+Route::post('/refund-payment', [ShopController::class, 'refund']);
+
+//Bestellingen
+Route::post('/all-bestellingen', [BestellingController::class, 'getAll']);
+Route::post('/get-bestelling-info', [BestellingController::class, 'getBestellingInfo']);
+Route::post('/change-bestelling-status', [BestellingController::class, 'changeBestellingStatus']);
+Route::post('/change-ordered-product-status', [BestellingController::class, 'changeOrderedProductStatus']);
+Route::post('/email-working-on-order', [BestellingController::class, 'sendEmailWorkingOn']);
+Route::post('/email-order-send', [BestellingController::class, 'sendEmailOrderSend']);
+Route::post('get-bestelling-with-status', [BestellingController::class, 'getBestellingWithStatus']);
+
+//content
+Route::get('/get-homepage-content', [ContentController::class, 'getHomeContent']);
+Route::post('/save-homepage-content', [ContentController::class, 'saveHomeContent']);
+Route::post('/save-homepage-content-no-foto', [ContentController::class, 'saveHomeContentNoFoto']);
+
+//Happy customer controller
+Route::post('/get-happy-customers', [HappyCustomerController::class, 'get']);
+Route::post('/add-happy-customer', [HappyCustomerController::class, 'add']);
+Route::post('/add-happy-customer-picture', [HappyCustomerController::class, 'addPicture']);
+Route::post('/delete-happy-customer', [HappyCustomerController::class, 'delete']);
+Route::get('/get-home-happy-customers', [HappyCustomerController::class, 'getHome']);
+
+//Document Controller
+Route::post('/download-algemene-voorwaarden', [DocumentController::class, 'getAlgemeneVoorwaarden']);
+Route::post('/download-privacy-policy', [DocumentController::class, 'getPrivacyPolicy']);
+Route::post('/download-return-form', [DocumentController::class, 'getReturnForm']);
+
+//Instagram Controller
+Route::get('/get-new-instagram-pictures', [InstagramController::class, 'getNewPictures']);
+Route::get('/get-instagram-pictures', [InstagramController::class, 'getCurrentPictures']);
+Route::post('/delete-instagram-data', [InstagramController::class, 'instaDataDeleted']);
+Route::post('/save-new-instagram-pictures', [InstagramController::class, 'saveNewPictures']);
+
+
+
+
+
+
+//test
+// Route::post('/test', [ShopController::class, 'test']);

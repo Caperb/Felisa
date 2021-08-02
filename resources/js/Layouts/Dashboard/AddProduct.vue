@@ -68,7 +68,16 @@
               <md-input
                 v-model="item.prijs"
                 placeholder="Prijs"
-                type="prijs"
+                type="number"
+              ></md-input>
+            </md-field>
+
+            <md-field>
+              <label>Gewicht</label>
+              <md-input
+                v-model="item.gewicht"
+                placeholder="Gewicht"
+                type="number"
               ></md-input>
             </md-field>
 
@@ -76,7 +85,7 @@
             </md-step>
 
         <md-step id="third" md-label="Product foto">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center dashboard-edit-container">
 
   <md-field>
     <label>Foto</label>
@@ -88,7 +97,7 @@
   </div>
 
   <md-button
-    class="md-primary med-md-button"
+    class="md-primary md-raised"
     type="submit"
     @click="addProduct()"
     >Aanmaken</md-button
@@ -96,6 +105,50 @@
 
 </div>
     </md-step>
+
+    <md-step id="fourth" md-label="Product foto 2">
+        <div class="input-wrapper ta-center dashboard-edit-container">
+
+<md-field>
+<label>Foto</label>
+<md-file @md-change="handleFileUpload2($event)"/>
+</md-field>
+
+<div class="container-uploading-image">
+<img :src="this.item.foto2" class="uploading-image"/>
+</div>
+
+<md-button
+class="md-primary md-raised"
+type="submit"
+@click="addProduct()"
+>Aanmaken</md-button
+>
+
+</div>
+</md-step>
+
+<md-step id="fifth" md-label="Product foto 3">
+    <div class="input-wrapper ta-center dashboard-edit-container">
+
+<md-field>
+<label>Foto</label>
+<md-file @md-change="handleFileUpload3($event)"/>
+</md-field>
+
+<div class="container-uploading-image">
+<img :src="this.item.foto3" class="uploading-image"/>
+</div>
+
+<md-button
+class="md-primary md-raised"
+type="submit"
+@click="addProduct()"
+>Aanmaken</md-button
+>
+
+</div>
+</md-step>
 
         </md-steppers>
       </md-card-content>
@@ -121,8 +174,13 @@ export default {
         naam: "",
         beschrijving: "",
         prijs: "",
+        gewicht: undefined,
         foto: '',
         fotoNaam: '',
+        foto2: '',
+        fotoNaam2: '',
+        foto3: '',
+        fotoNaam3: '',
         selectedSubCategorie: '',
         selectedOpties: [],
       },
@@ -171,13 +229,18 @@ export default {
         let formData = new FormData();
 
         formData.append('foto', this.item.foto);
+        formData.append('fotoNaam', this.item.fotoNaam);
+        formData.append('foto2', this.item.foto2);
+        formData.append('fotoNaam2', this.item.fotoNaam2);
+        formData.append('foto3', this.item.foto3);
+        formData.append('fotoNaam3', this.item.fotoNaam3);
         formData.append('selectedCategorie', this.selectedCategorie);
         formData.append('naam', this.item.naam);
         formData.append('beschrijving', this.item.beschrijving);
-        formData.append('prijs', this.item.prijs);
-        formData.append('fotoNaam', this.item.fotoNaam);
+        formData.append('prijs', this.item.prijs.replace('.', ','));
         formData.append('selectedSubCategorie', this.item.selectedSubCategorie);
         formData.append('selectedOpties', this.item.selectedOpties);
+        formData.append('gewicht', this.item.gewicht.replace(',', '.'));
 
             axios.post( '/add-product',
                 formData,
@@ -197,6 +260,26 @@ export default {
       reader.readAsDataURL(image);
       reader.onload = e =>{
       this.item.foto = e.target.result;
+       };
+    },
+
+    handleFileUpload2(e){
+      this.item.fotoNaam2 = e[0].name;
+      const image = e[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e =>{
+      this.item.foto2 = e.target.result;
+       };
+    },
+
+    handleFileUpload3(e){
+      this.item.fotoNaam3 = e[0].name;
+      const image = e[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e =>{
+      this.item.foto3 = e.target.result;
        };
     },
 

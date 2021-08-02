@@ -68,7 +68,16 @@
               <md-input
                 v-model="selectedProduct.prijs"
                 placeholder="Prijs"
-                type="prijs"
+                type="number"
+              ></md-input>
+            </md-field>
+
+            <md-field>
+              <label>Gewicht</label>
+              <md-input
+                v-model="selectedProduct.gewicht"
+                placeholder="Gewicht"
+                type="number"
               ></md-input>
             </md-field>
 
@@ -76,7 +85,7 @@
             </md-step>
 
         <md-step id="third" md-label="Product foto">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
 
   <md-field>
     <label>Foto</label>
@@ -88,7 +97,7 @@
   </div>
 
   <md-button
-    class="md-primary med-md-button"
+    class="md-primary md-raised"
     type="submit"
     @click="editProduct()"
     >Bijwerken</md-button
@@ -96,6 +105,50 @@
 
 </div>
     </md-step>
+
+    <md-step id="fourth" md-label="Product foto 2">
+        <div class="input-wrapper ta-center pagina-content-editor">
+
+<md-field>
+<label>Foto 2</label>
+<md-file @md-change="handleFileUpload2($event)"/>
+</md-field>
+
+<div class="container-uploading-image">
+<img :src="this.selectedProduct.foto2" class="uploading-image"/>
+</div>
+
+<md-button
+class="md-primary md-raised"
+type="submit"
+@click="editProduct()"
+>Bijwerken</md-button
+>
+
+</div>
+</md-step>
+
+<md-step id="fifth" md-label="Product foto 3">
+    <div class="input-wrapper ta-center pagina-content-editor">
+
+<md-field>
+<label>Foto 3</label>
+<md-file @md-change="handleFileUpload3($event)"/>
+</md-field>
+
+<div class="container-uploading-image">
+<img :src="this.selectedProduct.foto3" class="uploading-image"/>
+</div>
+
+<md-button
+class="md-primary md-raised"
+type="submit"
+@click="editProduct()"
+>Bijwerken</md-button
+>
+
+</div>
+</md-step>
 
         </md-steppers>
       </md-card-content>
@@ -119,6 +172,10 @@ export default {
     return {
       oudeFotoNaam: '',
       newFotoNaam: '',
+      oudeFotoNaam2: '',
+      newFotoNaam2: '',
+      oudeFotoNaam3: '',
+      newFotoNaam3: '',
       allOpties: [],
       allCategories: [],
       allSubCategories: [],
@@ -152,8 +209,14 @@ export default {
 
       this.selectedProduct.opties = newArray;
 
-      this.oudeFotoNaam = this.selectedProduct.foto
-      this.newFotoNaam = this.selectedProduct.foto
+      this.oudeFotoNaam = this.selectedProduct.foto;
+      this.newFotoNaam = this.selectedProduct.foto;
+
+      this.oudeFotoNaam2 = this.selectedProduct.foto2;
+      this.newFotoNaam2 = this.selectedProduct.foto2;
+
+      this.oudeFotoNaam3 = this.selectedProduct.foto3;
+      this.newFotoNaam3 = this.selectedProduct.foto3;
 
       if (this.selectedProduct.opties[0] != this.selectedProduct.opties[0]) {
           this.selectedProduct.opties.shift();
@@ -183,28 +246,220 @@ export default {
 
     editProduct() {
 
-        if (this.oudeFotoNaam == this.newFotoNaam) {
+        if (this.oudeFotoNaam == this.newFotoNaam && this.oudeFotoNaam2 == this.newFotoNaam2 && this.oudeFotoNaam3 == this.newFotoNaam3) {
 
           axios
-          .post('edit-product', {foto: 'none', id: this.selectedProduct.id, naam: this.selectedProduct.naam, beschrijving: this.selectedProduct.beschrijving, categorie: this.selectedProduct.categorie,
-                                  subCategorie: this.selectedProduct.subCategorie, opties: this.selectedProduct.opties, prijs: this.selectedProduct.prijs})
+          .post('edit-product', {foto: 'none', foto2: 'none', foto3: 'none', id: this.selectedProduct.id, naam: this.selectedProduct.naam, beschrijving: this.selectedProduct.beschrijving, categorie: this.selectedProduct.categorie,
+                                  subCategorie: this.selectedProduct.subCategorie, opties: this.selectedProduct.opties, prijs: this.selectedProduct.prijs.replace('.', ','), gewicht: this.selectedProduct.gewicht.toString().replace(',', '.')})
           .then((response) => (this.response = response.data));
 
-        }else {
+        }else if (this.oudeFotoNaam != this.newFotoNaam && this.oudeFotoNaam2 == this.newFotoNaam2 && this.oudeFotoNaam3 == this.newFotoNaam3) {
 
           this.oudeFotoNaam = this.oudeFotoNaam.replace("/product_fotos/", "");
 
           let formData = new FormData();
           formData.append('id', this.selectedProduct.id);
           formData.append('foto', this.selectedProduct.foto);
+          formData.append('foto2', 'none');
+          formData.append('foto3', 'none');
+          formData.append('newFotoNaam', this.newFotoNaam);
+          formData.append('oudeFotoNaam', this.oudeFotoNaam);
           formData.append('categorie', this.selectedProduct.categorie);
           formData.append('naam', this.selectedProduct.naam);
           formData.append('beschrijving', this.selectedProduct.beschrijving);
-          formData.append('prijs', this.selectedProduct.prijs);
-          formData.append('newFotoNaam', this.newFotoNaam);
-          formData.append('oudeFotoNaam', this.oudeFotoNaam);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
           formData.append('subCategorie', this.selectedProduct.subCategorie);
           formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
+
+              axios.post( '/edit-product',
+                  formData,
+                  {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                }
+              ).then((response) => (this.response = response.data))
+              .catch((error) => (this.response = error.data));
+
+        }else if (this.oudeFotoNaam == this.newFotoNaam && this.oudeFotoNaam2 != this.newFotoNaam2 && this.oudeFotoNaam3 == this.newFotoNaam3) {
+
+          this.oudeFotoNaam2 = this.oudeFotoNaam2.replace("/product_fotos/", "");
+
+          let formData = new FormData();
+          formData.append('id', this.selectedProduct.id);
+          formData.append('foto', 'none');
+          formData.append('foto2', this.selectedProduct.foto2);
+          formData.append('foto3', 'none');
+          formData.append('newFotoNaam2', this.newFotoNaam2);
+          formData.append('oudeFotoNaam2', this.oudeFotoNaam2);
+          formData.append('categorie', this.selectedProduct.categorie);
+          formData.append('naam', this.selectedProduct.naam);
+          formData.append('beschrijving', this.selectedProduct.beschrijving);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
+          formData.append('subCategorie', this.selectedProduct.subCategorie);
+          formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
+
+              axios.post( '/edit-product',
+                  formData,
+                  {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                }
+              ).then((response) => (this.response = response.data))
+              .catch((error) => (this.response = error.data));
+
+        }else if (this.oudeFotoNaam == this.newFotoNaam && this.oudeFotoNaam2 == this.newFotoNaam2 && this.oudeFotoNaam3 != this.newFotoNaam3) {
+
+          this.oudeFotoNaam3 = this.oudeFotoNaam3.replace("/product_fotos/", "");
+
+          let formData = new FormData();
+          formData.append('id', this.selectedProduct.id);
+          formData.append('foto', 'none');
+          formData.append('foto2', 'none');
+          formData.append('foto3', this.selectedProduct.foto3);
+          formData.append('newFotoNaam3', this.newFotoNaam3);
+          formData.append('oudeFotoNaam3', this.oudeFotoNaam3);
+          formData.append('categorie', this.selectedProduct.categorie);
+          formData.append('naam', this.selectedProduct.naam);
+          formData.append('beschrijving', this.selectedProduct.beschrijving);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
+          formData.append('subCategorie', this.selectedProduct.subCategorie);
+          formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
+
+              axios.post( '/edit-product',
+                  formData,
+                  {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                }
+              ).then((response) => (this.response = response.data))
+              .catch((error) => (this.response = error.data));
+
+        }else if (this.oudeFotoNaam != this.newFotoNaam && this.oudeFotoNaam2 != this.newFotoNaam2 && this.oudeFotoNaam3 == this.newFotoNaam3) {
+
+          this.oudeFotoNaam = this.oudeFotoNaam.replace("/product_fotos/", "");
+          this.oudeFotoNaam2 = this.oudeFotoNaam2.replace("/product_fotos/", "");
+
+          let formData = new FormData();
+          formData.append('id', this.selectedProduct.id);
+          formData.append('foto', this.selectedProduct.foto);
+          formData.append('foto2', this.selectedProduct.foto2);
+          formData.append('foto3', 'none');
+          formData.append('newFotoNaam', this.newFotoNaam);
+          formData.append('oudeFotoNaam', this.oudeFotoNaam);
+          formData.append('newFotoNaam2', this.newFotoNaam2);
+          formData.append('oudeFotoNaam2', this.oudeFotoNaam2);
+          formData.append('categorie', this.selectedProduct.categorie);
+          formData.append('naam', this.selectedProduct.naam);
+          formData.append('beschrijving', this.selectedProduct.beschrijving);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
+          formData.append('subCategorie', this.selectedProduct.subCategorie);
+          formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
+
+              axios.post( '/edit-product',
+                  formData,
+                  {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                }
+              ).then((response) => (this.response = response.data))
+              .catch((error) => (this.response = error.data));
+
+        }else if (this.oudeFotoNaam != this.newFotoNaam && this.oudeFotoNaam2 == this.newFotoNaam2 && this.oudeFotoNaam3 != this.newFotoNaam3) {
+
+          this.oudeFotoNaam = this.oudeFotoNaam.replace("/product_fotos/", "");
+          this.oudeFotoNaam3 = this.oudeFotoNaam3.replace("/product_fotos/", "");
+
+          let formData = new FormData();
+          formData.append('id', this.selectedProduct.id);
+          formData.append('foto', this.selectedProduct.foto);
+          formData.append('foto2', 'none');
+          formData.append('foto3', this.selectedProduct.foto3);
+          formData.append('newFotoNaam', this.newFotoNaam);
+          formData.append('oudeFotoNaam', this.oudeFotoNaam);
+          formData.append('newFotoNaam3', this.newFotoNaam3);
+          formData.append('oudeFotoNaam3', this.oudeFotoNaam3);
+          formData.append('categorie', this.selectedProduct.categorie);
+          formData.append('naam', this.selectedProduct.naam);
+          formData.append('beschrijving', this.selectedProduct.beschrijving);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
+          formData.append('subCategorie', this.selectedProduct.subCategorie);
+          formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
+
+              axios.post( '/edit-product',
+                  formData,
+                  {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                }
+              ).then((response) => (this.response = response.data))
+              .catch((error) => (this.response = error.data));
+
+        }else if (this.oudeFotoNaam == this.newFotoNaam && this.oudeFotoNaam2 != this.newFotoNaam2 && this.oudeFotoNaam3 != this.newFotoNaam3) {
+
+          this.oudeFotoNaam2 = this.oudeFotoNaam2.replace("/product_fotos/", "");
+          this.oudeFotoNaam3 = this.oudeFotoNaam3.replace("/product_fotos/", "");
+
+          let formData = new FormData();
+          formData.append('id', this.selectedProduct.id);
+          formData.append('foto', 'none');
+          formData.append('foto2', this.selectedProduct.foto2);
+          formData.append('foto3', this.selectedProduct.foto3);
+          formData.append('newFotoNaam2', this.newFotoNaam2);
+          formData.append('oudeFotoNaam2', this.oudeFotoNaam2);
+          formData.append('newFotoNaam3', this.newFotoNaam3);
+          formData.append('oudeFotoNaam3', this.oudeFotoNaam3);
+          formData.append('categorie', this.selectedProduct.categorie);
+          formData.append('naam', this.selectedProduct.naam);
+          formData.append('beschrijving', this.selectedProduct.beschrijving);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
+          formData.append('subCategorie', this.selectedProduct.subCategorie);
+          formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
+
+              axios.post( '/edit-product',
+                  formData,
+                  {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                }
+              ).then((response) => (this.response = response.data))
+              .catch((error) => (this.response = error.data));
+
+        }else {
+
+          this.oudeFotoNaam = this.oudeFotoNaam.replace("/product_fotos/", "");
+          this.oudeFotoNaam2 = this.oudeFotoNaam2.replace("/product_fotos/", "");
+          this.oudeFotoNaam3 = this.oudeFotoNaam3.replace("/product_fotos/", "");
+
+          let formData = new FormData();
+          formData.append('id', this.selectedProduct.id);
+          formData.append('foto', this.selectedProduct.foto);
+          formData.append('foto2', this.selectedProduct.foto2);
+          formData.append('foto3', this.selectedProduct.foto3);
+          formData.append('newFotoNaam', this.newFotoNaam);
+          formData.append('oudeFotoNaam', this.oudeFotoNaam);
+          formData.append('newFotoNaam2', this.newFotoNaam2);
+          formData.append('oudeFotoNaam2', this.oudeFotoNaam2);
+          formData.append('newFotoNaam3', this.newFotoNaam3);
+          formData.append('oudeFotoNaam3', this.oudeFotoNaam3);
+          formData.append('categorie', this.selectedProduct.categorie);
+          formData.append('naam', this.selectedProduct.naam);
+          formData.append('beschrijving', this.selectedProduct.beschrijving);
+          formData.append('prijs', this.selectedProduct.prijs.replace('.', ','));
+          formData.append('subCategorie', this.selectedProduct.subCategorie);
+          formData.append('opties', this.selectedProduct.opties);
+          formData.append('gewicht', this.selectedProduct.gewicht.toString().replace(',', '.'));
 
               axios.post( '/edit-product',
                   formData,
@@ -218,7 +473,6 @@ export default {
 
         }
 
-
     },
 
     handleFileUpload(e){
@@ -228,6 +482,26 @@ export default {
       reader.readAsDataURL(image);
       reader.onload = e =>{
       this.selectedProduct.foto = e.target.result;
+       };
+    },
+
+    handleFileUpload2(e){
+      this.newFotoNaam2 = e[0].name;
+      const image = e[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e =>{
+      this.selectedProduct.foto2 = e.target.result;
+       };
+    },
+
+    handleFileUpload3(e){
+      this.newFotoNaam3 = e[0].name;
+      const image = e[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e =>{
+      this.selectedProduct.foto3 = e.target.result;
        };
     },
 

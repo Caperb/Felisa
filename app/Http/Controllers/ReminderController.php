@@ -32,7 +32,7 @@ class ReminderController extends Controller
           'name' => $request->input,
           'done' => 0,
           'user' => $request->user,
-          'created_at' => Carbon::now()->toDateString(),
+          'created_at' => Carbon::now(),
         ]);
       }
     }
@@ -43,17 +43,17 @@ class ReminderController extends Controller
 
         $active = DB::table('reminders')
         ->where('done', '=', 0)
-        ->orderBy('created_at', 'desc')
-        ->paginate(17);
+        ->orderBy('created_at', 'asc')
+        ->paginate(5);
 
         $done = DB::table('reminders')
         ->where('done', '=', 1)
         ->orderBy('updated_at', 'desc')
-        ->paginate(17);
+        ->paginate(5);
 
         $recent = DB::table('reminders')
         ->orderBy('created_at', 'desc')
-        ->take(10)
+        ->take(5)
         ->get();
 
         return [$active, $done, $recent];
@@ -68,7 +68,7 @@ class ReminderController extends Controller
         return DB::table('reminders')
         ->where('done', '=', 0)
         ->orderBy('created_at', 'desc')
-        ->paginate(17);
+        ->paginate(5);
       }
     }
 
@@ -78,8 +78,8 @@ class ReminderController extends Controller
 
         return DB::table('reminders')
         ->where('done', '=', 1)
-        ->orderBy('created_at', 'desc')
-        ->paginate(17);
+        ->orderBy('created_at', 'asc')
+        ->paginate(5);
       }
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -29,22 +30,37 @@ class HomeController extends Controller
     {
       if (Auth::check()) {
 
+        $oldAccessTokenDate = DB::table('access_token')
+        ->where('name', '=', 'instagram')
+        ->value('updated_at');
+
+        if ($oldAccessTokenDate < Carbon::now()->subDays(7)->toDateTimeString()){
+          $oldAccessToken = DB::table('access_token')
+          ->where('name', '=', 'instagram')
+          ->value('value');
+
+          $newAccessToken = Http::get('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token='.$oldAccessToken);
+
+          DB::table('access_token')
+          ->where('name', '=', 'instagram')
+          ->update([
+            'value' => $newAccessToken['access_token'],
+            'updated_at' => Carbon::now()
+          ]);
+        }
+
         //Tickets
-        $activeTickets = DB::table('ticket')
-        ->where('state', '=', 'Nieuw')
-        ->orWhere(function($query) {
-          $query->orWhere('state', '=','Due')
-                ->orWhere('state', '=', 'In progress')
-                ->orWhere('state', '=', 'Waiting for delivery');
-                })
+        $activeTickets = DB::table('orders')
+        ->where('deliveryStatus', '=', 'Nieuw')
         ->count();
 
-        $newTickets = DB::table('ticket')
-        ->where('state', '=', 'Nieuw')
+        $newTickets = DB::table('orders')
+        ->where('deliveryStatus', '=', 'Nieuw')
         ->count();
 
-        $dueTickets = DB::table('ticket')
-        ->where('state', '=', 'Due')
+        $dueTickets = DB::table('orders')
+        ->where('deliveryStatus', '=', 'Nieuw')
+        ->where('created_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())
         ->count();
 
         $inProgressTickets = DB::table('ticket')
@@ -138,7 +154,7 @@ class HomeController extends Controller
         $reminders = DB::table('reminders')
         ->where('done', '=', 0)
         ->orderBy('created_at', 'asc')
-        ->paginate(7);
+        ->paginate(5);
 
         $activeReminders = DB::table('reminders')
         ->where('done', '=', 0)
@@ -153,11 +169,48 @@ class HomeController extends Controller
         ->orderBy('verloopDatumAbbonement', 'asc')
         ->paginate(7);
 
+        //Bestelling in progress
+
+        $bestellingenInProgress =
+        DB::table('orders')
+        ->where('deliveryStatus', '=', 'workingOn')
+        ->count();
+
+        $dueBestellingenInProgress =
+        DB::table('orders')
+        ->where('deliveryStatus', '=', 'workingOn')
+        ->where('updated_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())
+        ->count();
+
+        //Bestelling klaar
+
+        $bestellingenKlaar =
+        DB::table('orders')
+        ->where('deliveryStatus', '=', 'BestellingLigtKlaar')
+        ->count();
+
+        $dueBestellingKlaar =
+        DB::table('orders')
+        ->where('deliveryStatus', '=', 'BestellingLigtKlaar')
+        ->where('updated_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())
+        ->count();
+
+        //Bestelling klaar
+
+        $verstuurdeBestellingen =
+        DB::table('orders')
+        ->where('deliveryStatus', '=', 'BestellingVerstuurd')
+        ->count();
+
+
         $datumVandaag = Carbon::now();
 
-        return [$newTickets, $dueTickets, $inProgressTickets, $waitingForDeliveryTickets, $doneTickets, $newOrders, $dueOrders,
-        $inProgressOrders, $waitingForDeliveryOrders, $doneOrders, $newRepairs, $dueRepairs, $inProgressRepairs,
-        $waitingForDeliveryRepairs, $doneRepairs, $reminders, $contracts, $datumVandaag, $activeTickets, $activeRepairs, $activeOrders, $activeReminders];
+        return [$newTickets, $dueTickets, $inProgressTickets, $waitingForDeliveryTickets, $doneTickets,
+                $newOrders, $dueOrders, $inProgressOrders, $waitingForDeliveryOrders, $doneOrders,
+                $newRepairs, $dueRepairs, $inProgressRepairs, $waitingForDeliveryRepairs, $doneRepairs,
+                $reminders, $contracts, $datumVandaag, $activeTickets, $activeRepairs,
+                $activeOrders, $activeReminders, $bestellingenInProgress, $dueBestellingenInProgress, $bestellingenKlaar,
+                $dueBestellingKlaar, $verstuurdeBestellingen];
 
       }
     }
@@ -178,35 +231,45 @@ class HomeController extends Controller
    public function refreshReminders(Request $request)
    {
      if (Auth::check()) {
-       return DB::table('reminders')
+       $reminders = DB::table('reminders')
        ->where('done', '=', 0)
        ->orderBy('created_at', 'desc')
-       ->paginate(7);
+       ->paginate(5);
+
+       return $reminders;
      }
    }
 
-   public function editContract(Request $request){
+   public function refreshReminderCount(Request $request){
      if (Auth::check()) {
-       return DB::table('klant')
-       ->where('id', '=', $request->id)
-       ->update([
-         'contractStatus' => 'checked',
-         'updated_at' => Carbon::now(),
-       ]);
+       return DB::table('reminders')
+       ->where('done', '=', 0)
+       ->count();
      }
    }
 
-   public function refreshContracts(Request $request)
-   {
-     if (Auth::check()) {
-       return DB::table('klant')
-       ->select('voornaam', 'achternaam', 'verloopDatumAbbonement', 'contractStatus', 'id')
-       ->where('verloopDatumAbbonement', '>', Carbon::now()->subDays(90))
-       ->where('contractStatus', '=', null)
-       ->orderBy('verloopDatumAbbonement', 'desc')
-       ->paginate(7);
-     }
-   }
+   // public function editContract(Request $request){
+   //   if (Auth::check()) {
+   //     return DB::table('klant')
+   //     ->where('id', '=', $request->id)
+   //     ->update([
+   //       'contractStatus' => 'checked',
+   //       'updated_at' => Carbon::now(),
+   //     ]);
+   //   }
+   // }
+   //
+   // public function refreshContracts(Request $request)
+   // {
+   //   if (Auth::check()) {
+   //     return DB::table('klant')
+   //     ->select('voornaam', 'achternaam', 'verloopDatumAbbonement', 'contractStatus', 'id')
+   //     ->where('verloopDatumAbbonement', '>', Carbon::now()->subDays(90))
+   //     ->where('contractStatus', '=', null)
+   //     ->orderBy('verloopDatumAbbonement', 'desc')
+   //     ->paginate(7);
+   //   }
+   // }
 
 
 

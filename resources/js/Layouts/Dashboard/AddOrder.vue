@@ -49,7 +49,7 @@
 
           <!-- Order info -->
           <md-step id="second" md-label="Bestelling">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
 
               <div
                 v-for="(number, index) in this.aantalExtraArtikelen"
@@ -87,7 +87,7 @@
               >
 
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="addOrder()"
                 >Aanmaken</md-button

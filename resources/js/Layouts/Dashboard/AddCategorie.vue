@@ -12,7 +12,7 @@
         <md-steppers md-alternative>
           <!-- Algemene Info -->
           <md-step id="first" md-label="Categorie toevoegen">
-            <div class="input-wrapper ta-center">
+            <div class="input-wrapper ta-center pagina-content-editor">
 
               <md-field>
           <label for="categorie">Type categorie</label>
@@ -58,7 +58,7 @@
 
 
               <md-button
-                class="md-primary med-md-button"
+                class="md-primary md-raised"
                 type="submit"
                 @click="addCategorie()"
                 >Aanmaken</md-button
